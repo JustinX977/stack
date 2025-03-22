@@ -6,7 +6,7 @@
 #include<assert.h>
 #include<stdbool.h>
 
-typedef int datatype;
+typedef char datatype;
 
 typedef struct stack
 {

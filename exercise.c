@@ -34,7 +34,7 @@ bool isValid(char* s)
 
 int main()
 {
-    char *s = {'(', ')', '[', ']'};
+    char *s = "([])";
 
     bool ret = isValid(s);
     if (ret == true)
