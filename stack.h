@@ -24,6 +24,7 @@ int stack_size(stack_t *ps);
 bool stack_empty(stack_t *ps);
 
 
+void stack_print(stack_t *ps);
 
 
 #endif /*__STACK_H__*/

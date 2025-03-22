@@ -12,19 +12,12 @@ void stack_test1(void)
 	stack_push(&st, 6);
 	stack_push(&st, 7);
 
-
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-	stack_pop(&st);
-
 	datatype ret = stack_top(&st);
 	printf("ret = %d\n", ret);
+
+	stack_print(&st);
+
+	stack_destroy(&st);
 }
 
 int main(void)
@@ -32,6 +25,15 @@ int main(void)
 	stack_test1();
 
 	return 0;
+}
+
+void stack_print(stack_t *ps)
+{
+	while (!stack_empty(ps))
+	{
+		printf("%d\t", stack_top(ps));
+		stack_pop(ps);
+	}
 }
 
 void stack_init(stack_t *ps)
@@ -48,7 +50,7 @@ void stack_destroy(stack_t *ps)
 {
 	assert(ps);
 
-	free(ps);
+	free(ps->data);
 
 	ps->data = NULL;
 	ps->top = ps->capacity = 0;
@@ -80,24 +82,25 @@ void stack_pop(stack_t *ps)
 {
 	assert(ps);
 
-	ps->top = ps->top == 0 ? 0 : ps->top--;
+	ps->top = (ps->top == 0 ? 0 : ps->top - 1);
 }
 
 datatype stack_top(stack_t *ps)
 {
 	assert(ps);
-
+	assert(ps->top > 0);
 	return ps->data[ps->top - 1];
 }
 
 int stack_size(stack_t *ps)
 {
-
+	assert(ps);
+	return ps->top;
 }
 
 bool stack_empty(stack_t *ps)
 {
-
+	return ps->top == 0;
 }
 
 
