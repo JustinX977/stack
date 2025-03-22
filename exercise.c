@@ -27,6 +27,11 @@ bool isValid(char* s)
         }
         s++;
     }
+	if (stack_empty(&st) == true)
+	{
+		stack_destroy(&st);
+		return false;
+	}
 
     stack_destroy(&st);
     return true;
@@ -34,8 +39,9 @@ bool isValid(char* s)
 
 int main()
 {
-    char *s = {'(', ')', '[', ']'};
-
+    //char *s = {'(', ')', '[', ']'};
+	
+    char *s = "([]){";
     bool ret = isValid(s);
     if (ret == true)
     {
